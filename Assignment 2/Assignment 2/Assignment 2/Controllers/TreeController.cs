@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Assignment_2.Data;
+using Assignment_2.Dependencies;
 using Assignment_2.Models;
 
 namespace Assignment_2.Controllers
@@ -15,10 +16,13 @@ namespace Assignment_2.Controllers
     public class TreeController : ControllerBase
     {
         private readonly ForestContext _context;
+        
+        private readonly ITree _tree;
 
-        public TreeController(ForestContext context)
+        public TreeController(ForestContext context, ITree tree)
         {
             _context = context;
+            _tree = tree;
         }
 
         // GET: api/Tree
@@ -114,6 +118,15 @@ namespace Assignment_2.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+        
+        // POST: api/Tree/Grow
+        [HttpPost("Grow")]
+        public async Task<IActionResult> GrowTree(int id)
+        {
+           
+            _tree.Grow();
+            return Ok("The tree grew");
         }
 
         private bool TreeExists(int id)

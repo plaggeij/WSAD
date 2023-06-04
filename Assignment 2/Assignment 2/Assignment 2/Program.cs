@@ -1,4 +1,7 @@
+using System.Configuration;
 using Assignment_2.Data;
+using Assignment_2.Dependencies;
+using Assignment_2.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.EntityFrameworkCore;
 
@@ -46,7 +49,7 @@ builder.Services.AddDbContext<ForestContext>(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddSingleton<ITree, Tree>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
