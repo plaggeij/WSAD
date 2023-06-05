@@ -1,6 +1,7 @@
 using System.Configuration;
 using Assignment_2.Data;
 using Assignment_2.Dependencies;
+using Assignment_2.Middleware;
 using Assignment_2.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.EntityFrameworkCore;
@@ -39,8 +40,6 @@ else
     connectionName = args[0];
 }
 
-Console.Write("test text" + connectionName);
-
 builder.Services.AddDbContext<ForestContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString(connectionName));
@@ -59,10 +58,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.Use(async (context, next) =>
+{
+    Console.Write("Hello from the forest! \n");
+    await next(context);
+});
+app.UseMiddleware<ForestMiddleware>();
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
+
 
 app.Run();
