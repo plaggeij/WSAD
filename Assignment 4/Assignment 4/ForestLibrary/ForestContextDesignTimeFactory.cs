@@ -10,7 +10,7 @@ public class ForestContextDesignTimeFactory: IDesignTimeDbContextFactory<ForestC
     {
         var optionsBuilder = new DbContextOptionsBuilder<ForestContext>();
         var config = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
+            .SetBasePath(Directory.GetParent(Directory.GetCurrentDirectory()) + "/ForestMVC/")
             .AddJsonFile("appsettings.json")
             .Build();
 
