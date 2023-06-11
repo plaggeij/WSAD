@@ -22,7 +22,7 @@ namespace ForestLibrary.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ForestLibrary.Branch", b =>
+            modelBuilder.Entity("ForestLibrary.Models.Branch", b =>
                 {
                     b.Property<int>("BranchId")
                         .ValueGeneratedOnAdd()
@@ -46,7 +46,26 @@ namespace ForestLibrary.Migrations
                     b.ToTable("Branches");
                 });
 
-            modelBuilder.Entity("ForestLibrary.Leaf", b =>
+            modelBuilder.Entity("ForestLibrary.Models.Forest", b =>
+                {
+                    b.Property<int>("ForestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ForestId"));
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ForestId");
+
+                    b.ToTable("Forests");
+                });
+
+            modelBuilder.Entity("ForestLibrary.Models.Leaf", b =>
                 {
                     b.Property<int>("LeafId")
                         .ValueGeneratedOnAdd()
@@ -67,13 +86,16 @@ namespace ForestLibrary.Migrations
                     b.ToTable("Leaves");
                 });
 
-            modelBuilder.Entity("ForestLibrary.Tree", b =>
+            modelBuilder.Entity("ForestLibrary.Models.Tree", b =>
                 {
                     b.Property<int>("TreeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TreeId"));
+
+                    b.Property<int?>("ForestId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("Height")
                         .HasColumnType("int");
@@ -86,12 +108,14 @@ namespace ForestLibrary.Migrations
 
                     b.HasKey("TreeId");
 
+                    b.HasIndex("ForestId");
+
                     b.ToTable("Trees");
                 });
 
-            modelBuilder.Entity("ForestLibrary.Branch", b =>
+            modelBuilder.Entity("ForestLibrary.Models.Branch", b =>
                 {
-                    b.HasOne("ForestLibrary.Tree", "Tree")
+                    b.HasOne("ForestLibrary.Models.Tree", "Tree")
                         .WithMany("Branches")
                         .HasForeignKey("TreeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -100,9 +124,9 @@ namespace ForestLibrary.Migrations
                     b.Navigation("Tree");
                 });
 
-            modelBuilder.Entity("ForestLibrary.Leaf", b =>
+            modelBuilder.Entity("ForestLibrary.Models.Leaf", b =>
                 {
-                    b.HasOne("ForestLibrary.Branch", "Branch")
+                    b.HasOne("ForestLibrary.Models.Branch", "Branch")
                         .WithMany("Leaves")
                         .HasForeignKey("BranchId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -111,12 +135,24 @@ namespace ForestLibrary.Migrations
                     b.Navigation("Branch");
                 });
 
-            modelBuilder.Entity("ForestLibrary.Branch", b =>
+            modelBuilder.Entity("ForestLibrary.Models.Tree", b =>
+                {
+                    b.HasOne("ForestLibrary.Models.Forest", null)
+                        .WithMany("Trees")
+                        .HasForeignKey("ForestId");
+                });
+
+            modelBuilder.Entity("ForestLibrary.Models.Branch", b =>
                 {
                     b.Navigation("Leaves");
                 });
 
-            modelBuilder.Entity("ForestLibrary.Tree", b =>
+            modelBuilder.Entity("ForestLibrary.Models.Forest", b =>
+                {
+                    b.Navigation("Trees");
+                });
+
+            modelBuilder.Entity("ForestLibrary.Models.Tree", b =>
                 {
                     b.Navigation("Branches");
                 });
