@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ForestLibrary;
+namespace ForestLibrary.Models;
 
 [Table("Trees")]
 public class Tree
