@@ -1,5 +1,8 @@
-﻿namespace ForestLibrary;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
+namespace ForestLibrary;
+
+[Table("Trees")]
 public class Tree
 {
     public int TreeId { get; set; }
@@ -7,5 +10,5 @@ public class Tree
     public string? Species { get; set; }
     public int? Height { get; set; }
     
-    public ICollection<Branch> Branches { get; set; }
+    public ICollection<Branch>? Branches { get; set; }
 }

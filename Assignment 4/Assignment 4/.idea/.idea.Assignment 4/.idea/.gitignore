@@ -1,0 +1,23 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/projectSettingsUpdater.xml
+/modules.xml
+/contentModel.xml
+/.idea.Assignment 4.iml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+#Other Ignored Files
+/Assignment 4/Assignment 4/ForestWebAPI/obj/*
+/Assignment 4/Assignment 4/ForestWebAPI/bin/*
+/Assignment 4/Assignment 4/ForestMVC/obj/*
+/Assignment 4/Assignment 4/ForestMVC/bin/*
+/Assignment 4/Assignment 4/ForestLibrary/obj/*
+/Assignment 4/Assignment 4/ForestLibrary/bin/*
+/Assignment 4/Assignment 4/.idea/*
+/Assignment 4/Assignment 4/.vs/*
+
