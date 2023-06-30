@@ -4,16 +4,19 @@ using Assignment5Library.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Assignment_5.Migrations
+namespace Assignment5Library.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("20230629004918_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace Assignment_5.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Assignment5Library.Entities.Customer", b =>
+            modelBuilder.Entity("Assignment_5.Entities.Customer", b =>
                 {
                     b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd()
@@ -53,7 +56,7 @@ namespace Assignment_5.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("Assignment5Library.Entities.Order", b =>
+            modelBuilder.Entity("Assignment_5.Entities.Order", b =>
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
@@ -72,7 +75,7 @@ namespace Assignment_5.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("Assignment5Library.Entities.OrderItem", b =>
+            modelBuilder.Entity("Assignment_5.Entities.OrderItem", b =>
                 {
                     b.Property<int>("OrderLineItemId")
                         .ValueGeneratedOnAdd()
@@ -97,7 +100,7 @@ namespace Assignment_5.Migrations
                     b.ToTable("OrderLineItems");
                 });
 
-            modelBuilder.Entity("Assignment5Library.Entities.Product", b =>
+            modelBuilder.Entity("Assignment_5.Entities.Product", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
@@ -114,44 +117,6 @@ namespace Assignment_5.Migrations
                     b.HasKey("ProductId");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            ProductId = 1,
-                            ProductName = "Cheese Pizza",
-                            ProductPrice = 9f
-                        },
-                        new
-                        {
-                            ProductId = 2,
-                            ProductName = "Peperoni Pizza",
-                            ProductPrice = 10f
-                        },
-                        new
-                        {
-                            ProductId = 3,
-                            ProductName = "Supreme Pizza",
-                            ProductPrice = 12f
-                        },
-                        new
-                        {
-                            ProductId = 4,
-                            ProductName = "Cheesy Bread Sticks",
-                            ProductPrice = 5f
-                        },
-                        new
-                        {
-                            ProductId = 5,
-                            ProductName = "Soft Drink",
-                            ProductPrice = 2f
-                        },
-                        new
-                        {
-                            ProductId = 6,
-                            ProductName = "Side Salad",
-                            ProductPrice = 3f
-                        });
                 });
 #pragma warning restore 612, 618
         }
