@@ -1,4 +1,4 @@
-using Assignment_5.Data;
+using Assignment5Library.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

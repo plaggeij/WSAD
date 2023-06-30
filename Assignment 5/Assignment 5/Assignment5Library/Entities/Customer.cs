@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Assignment_5.Entities;
+namespace Assignment5Library.Entities;
 
 [Table("Customers")]
 public class Customer

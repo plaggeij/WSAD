@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Assignment5Library.Data;
+using Assignment5Library.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Assignment_5.Data;
-using Assignment_5.Entities;
 
 namespace Assignment_5.Controllers
 {

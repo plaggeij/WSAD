@@ -1,8 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace Assignment_5.Entities;
+namespace Assignment5Library.Entities;
 
 [Table("OrderLineItems")]
 [PrimaryKey("OrderLineItemId")]

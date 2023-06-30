@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Assignment_5.Entities;
+namespace Assignment5Library.Entities;
 
 [Table("Products")]
 public class Product

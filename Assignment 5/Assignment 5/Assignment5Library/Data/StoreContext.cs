@@ -1,7 +1,7 @@
-﻿using Assignment_5.Entities;
+﻿using Assignment5Library.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Assignment_5.Data;
+namespace Assignment5Library.Data;
 
 public class StoreContext: DbContext
 {
