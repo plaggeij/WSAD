@@ -16,4 +16,6 @@ public class Customer
     public string? State { get; set; }
     [DisplayName("Zip Code")]
     public string? PostalCode { get; set; }
+
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

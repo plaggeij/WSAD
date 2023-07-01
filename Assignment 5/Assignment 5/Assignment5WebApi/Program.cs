@@ -1,9 +1,16 @@
+﻿using Assignment5Library.Data;
+using Microsoft.EntityFrameworkCore;
+using Assignment5WebApi.Controllers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddDbContext<StoreContext>(
+    optionsBuilder => optionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("StoreDB"))
+);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -21,5 +28,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapProductEndpoints();
 
 app.Run();
