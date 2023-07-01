@@ -19,6 +19,11 @@ namespace Assignment_5.Controllers
             _context = context;
         }
 
+        public async Task<IActionResult> ChooseCustomer()
+        {
+            return View();
+        }
+
         // GET: Customers
         public async Task<IActionResult> Index()
         { 

@@ -5,9 +5,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<StoreContext>(
-    optionsBuilder => optionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("StoreDB"))
-    );
+builder.Services.AddDbContext<StoreContext>(optionsBuilder =>
+{
+    optionsBuilder
+        .UseLazyLoadingProxies()
+        .UseSqlServer(builder.Configuration.GetConnectionString("StoreDB"));
+});
 
 var app = builder.Build();
 
@@ -28,6 +31,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Customers}/{action=ChooseCustomer}");
 
 app.Run();
