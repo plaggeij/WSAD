@@ -1,10 +1,15 @@
+using System.Text.Json.Serialization;
 using Assignment5Library.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(configure =>
+    {
+        configure.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    });
 builder.Services.AddDbContext<StoreContext>(optionsBuilder =>
 {
     optionsBuilder

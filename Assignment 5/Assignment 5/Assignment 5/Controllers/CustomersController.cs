@@ -7,6 +7,7 @@ using Assignment5Library.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace Assignment_5.Controllers
 {
@@ -21,6 +22,19 @@ namespace Assignment_5.Controllers
 
         public async Task<IActionResult> ChooseCustomer()
         {
+            var customers = await _context.Customers.ToListAsync();
+            List<SelectListItem> listItems = new();
+
+            foreach (var customer in customers)
+            {
+                var listItem = new SelectListItem()
+                {
+                    Text = $"{customer.FirstName} {customer.LastName}",
+                    Value = customer.CustomerId.ToString()
+                };
+                listItems.Add(listItem);
+                ViewBag.Customers = listItems;
+            }
             return View();
         }
 

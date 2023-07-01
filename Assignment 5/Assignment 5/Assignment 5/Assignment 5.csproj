@@ -89,4 +89,8 @@
       <ProjectReference Include="..\Assignment5Library\Assignment5Library.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <AdditionalFiles Include="Views\_PizzaStoreLayout.cshtml" />
+    </ItemGroup>
+
 </Project>
