@@ -1,0 +1,12 @@
+@page "/PointOfSales/{CustomerId?}"
+
+<h3>PointOfSales</h3>
+
+@CustomerId
+
+@code {
+
+    [Parameter]
+    public string? CustomerId { get; set; }
+
+}
