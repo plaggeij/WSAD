@@ -48,7 +48,7 @@ namespace Assignment_5.Controllers
                     .Where(o => o.OrderId == orderId).FirstAsync();
             }
 
-            var product = await _context.Products.FirstAsync(c => c.ProductId == customerId);
+            var product = await _context.Products.FirstAsync(c => c.ProductId == productId);
 
             var orderItem = new OrderLineItem()
             {

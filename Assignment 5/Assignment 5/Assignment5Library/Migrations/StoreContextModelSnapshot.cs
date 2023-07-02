@@ -131,7 +131,7 @@ namespace Assignment_5.Migrations
                         new
                         {
                             ProductId = 2,
-                            ProductName = "Peperoni Pizza",
+                            ProductName = "Pepperoni Pizza",
                             ProductPrice = 10f
                         },
                         new

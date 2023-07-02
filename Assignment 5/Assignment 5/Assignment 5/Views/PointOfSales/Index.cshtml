@@ -16,7 +16,7 @@
                     @foreach(var product in Model.Products!)
                     {
                         <a class="btn btn-primary m-1"
-                           asp-action="" asp-controller="" asp-all-route-data="data" asp-route-productId="@product.ProductId"
+                           asp-action="AddItem" asp-controller="PointOfSales" asp-all-route-data="data" asp-route-productId="@product.ProductId"
                            style="line-height:2;height:160px;width:160px">
                             <span style="font-weight: bold">@product.ProductName</span>
                             <br/>
@@ -52,7 +52,7 @@
                             {
                                 Quantity = o.Count(),
                                 Product = o.Where(p => p.ProductId == o.Key).First().Product,
-                                Price = o.Where(p => p.ProductId == o.Key).First().Product!.ProductPrice * o.Count()
+                                Price = o.Where(p => p.ProductId == o.Key).First()!.Product!.ProductPrice * o.Count()
                             });
                         @foreach (var orderItem in orderItems)
                         {
@@ -68,7 +68,7 @@
                                         @{
                                             var lineTotal = orderItem.Product!.ProductPrice * orderItem.Quantity;
                                             orderTotal += lineTotal;
-                                            WriteLiteral($"{lineTotal}:###0.00");
+                                            WriteLiteral($"{lineTotal:###0.00}");
                                         }
                                     </span>
                                 </div>
@@ -83,7 +83,7 @@
                             <span class="m-1" ></span>
                         </div>
                         <div class="col-2">
-                            <span class="m-1" style="font-weight:bold; text-decoration:underline"> I
+                            <span class="m-1" style="font-weight:bold; text-decoration:underline">
                             @($"{orderTotal:$###0.00}")
                             </span>
                         </div>
