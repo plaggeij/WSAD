@@ -4,7 +4,7 @@
 }
 
 <h1>Choose Customer</h1>
-<form asp-action="ChooseCustomer" asp-controller="Customers">
+<form asp-action="Index" asp-controller="PointOfSales">
     <div class="form-group m-2">
         <label class="control-label">Customer:</label>
         <select class="form-control" asp-for="CustomerId" asp-items="@ViewBag.Customers"></select>

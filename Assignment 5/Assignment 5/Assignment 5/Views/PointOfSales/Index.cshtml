@@ -1,0 +1,95 @@
+@using Assignment5Library.Entities
+@model Assignment_5.Models.OrderInProgress
+@{
+    var data = new Dictionary<string, string>();
+    data.Add("customerId", Model.Customer.CustomerId.ToString());
+    data.Add("OrderId", Model.Order?.OrderId.ToString() ?? "0");
+    var orderTotal = 0.00f;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="m-1" style="border: solid 3px blue">
+                <h1>Menu Items</h1>
+                <div class="container-fluid">
+                    @foreach(var product in Model.Products!)
+                    {
+                        <a class="btn btn-primary m-1"
+                           asp-action="" asp-controller="" asp-all-route-data="data" asp-route-productId="@product.ProductId"
+                           style="line-height:2;height:160px;width:160px">
+                            <span style="font-weight: bold">@product.ProductName</span>
+                            <br/>
+                            @($"{product.ProductPrice:$###0.00}")
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="m-1" style="border: solid 3px blue">
+                <h1>Order</h1>
+                <span class="m-1" style="font-weight: bold">Date: @DateTime.Now.ToString("yyyy-MM-dd HH:mm")</span>
+                <span class="m-1" style="font-weight: bold">Ticket #: @(Model.Order?.OrderId.ToString() ?? "0")</span>
+                <span class="m-1 float-end" style="font-weight: bold">Customer: @($"{Model.Customer.FirstName} {Model.Customer.LastName}")</span>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-2">
+                            <span class="m-1" style="font-weight: bold; text-decoration: underline">Qty</span>
+                        </div>
+                        <div class="col-8">
+                            <span class="m-1" style="font-weight: bold; text-decoration: underline">Item</span>
+                        </div>
+                        <div class="col-2">
+                            <span class="m-1" style="font-weight: bold; text-decoration: underline">Price</span>
+                        </div>
+                    </div>
+                    @if (Model.Order != null && Model.Order.OrderLineItems.Any())
+                    {
+                        var orderItems = Model.Order.OrderLineItems
+                            .GroupBy(g => g.ProductId)
+                            .Select(o => new OrderLineItem
+                            {
+                                Quantity = o.Count(),
+                                Product = o.Where(p => p.ProductId == o.Key).First().Product,
+                                Price = o.Where(p => p.ProductId == o.Key).First().Product!.ProductPrice * o.Count()
+                            });
+                        @foreach (var orderItem in orderItems)
+                        {
+                            <div class="row">
+                                <div class="col-2">
+                                    <span class="m-1">@orderItem.Quantity</span>
+                                </div>
+                                <div class="col-8">
+                                    <span class="m-1">@orderItem.Product!.ProductName</span>
+                                </div>
+                                <div class="col-2">
+                                    <span class="m-1">
+                                        @{
+                                            var lineTotal = orderItem.Product!.ProductPrice * orderItem.Quantity;
+                                            orderTotal += lineTotal;
+                                            WriteLiteral($"{lineTotal}:###0.00");
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+                        }
+                    }
+                    <div class="row">
+                        <div class="col-2">
+                            <span class="m-1" ></span>
+                        </div>
+                        <div class="col-8">
+                            <span class="m-1" ></span>
+                        </div>
+                        <div class="col-2">
+                            <span class="m-1" style="font-weight:bold; text-decoration:underline"> I
+                            @($"{orderTotal:$###0.00}")
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
