@@ -1,0 +1,59 @@
+﻿@page "/ProductDetails"
+@using Assignment_7_Models
+@inject HttpClient http
+
+<h3>Product Details</h3>
+
+@if (product is null)
+
+{
+    <p>Retrieving Product...</p>
+}
+else
+{
+    <div class="ms-2">
+        <div>
+            <h4>Product Details</h4>
+            <hr/>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Product Name
+                </dt>
+                <dd class="col-sm-10">
+                    @product!.ProductName
+                </dd>
+                <dt class="col-sm-2">
+                    Product Price
+                </dt>
+                <dd class="col-sm-10">
+                    @product!.ProductPrice
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a href="Products">Back to List</a>
+        </div>
+    </div>
+}
+
+@code {
+
+    [Parameter]
+    public int? ProductId { get; set; }
+
+    public ProductViewModel? product { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            product = await http.GetFromJsonAsync<ProductViewModel>($"api/Products/{ProductId}");
+        }
+        catch (Exception ex)
+        {
+
+        }
+        await base.OnInitializedAsync();
+    }
+
+}
