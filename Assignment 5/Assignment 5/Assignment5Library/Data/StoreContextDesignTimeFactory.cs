@@ -10,7 +10,7 @@ public class StoreContextDesignTimeFactory: IDesignTimeDbContextFactory<StoreCon
     {
         var optionsBuilder = new DbContextOptionsBuilder<StoreContext>();
         var config = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetParent(Directory.GetCurrentDirectory()) + "/Assignment 5/")
+            .SetBasePath(Directory.GetParent(Directory.GetCurrentDirectory()) + "/Assignment 6 Wapi/")
             .AddJsonFile("appsettings.json")
             .Build();
 

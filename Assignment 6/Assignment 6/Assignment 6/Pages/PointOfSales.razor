@@ -1,4 +1,4 @@
-@page "/PointOfSales/{CustomerId?}"
+@page "/PointOfSales/{CustomerId:int?}"
 
 <h3>PointOfSales</h3>
 
@@ -7,6 +7,6 @@
 @code {
 
     [Parameter]
-    public string? CustomerId { get; set; }
+    public int? CustomerId { get; set; }
 
 }

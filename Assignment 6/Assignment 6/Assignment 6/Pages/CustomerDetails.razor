@@ -1,0 +1,74 @@
+﻿@page "/CustomerDetails/{CustomerId:int?}"
+@using Assignment_7_Models
+
+@inject HttpClient http
+
+<h3>Customer Details</h3>
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            First Name
+        </dt>
+        <dd class = "col-sm-10">
+            @customer!.FirstName
+        </dd>
+        <dt class = "col-sm-2">
+            Last Name
+        </dt>
+        <dd class = "col-sm-10">
+            @customer!.LastName
+        </dd>
+        <dt class = "col-sm-2">
+            Address
+        </dt>
+        <dd class = "col-sm-10">
+            @customer.Address
+        </dd>
+        <dt class = "col-sm-2">
+            City
+        </dt>
+        <dd class = "col-sm-10">
+            @customer.City
+        </dd>
+        <dt class = "col-sm-2">
+            State
+        </dt>
+        <dd class = "col-sm-10">
+            @customer.State
+        </dd>
+        <dt class = "col-sm-2">
+            Postal Code
+        </dt>
+        <dd class = "col-sm-10">
+            @customer.PostalCode
+        </dd>
+    </dl>
+</div>
+<div>
+    <a href="CustomerEdit/@customer.CustomerId">Edit</a> |
+    <a href="Customers">Back to List</a>
+</div>
+
+@code {
+
+    [Parameter]
+    public int? CustomerId { get; set; }
+
+    public CustomerViewModel? customer { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            customer = await http.GetFromJsonAsync<CustomerViewModel>($"api/Customer/{CustomerId}");
+        }
+        catch (Exception ex)
+        {
+            
+        }
+        await base.OnInitializedAsync();
+    }
+
+}
