@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Assignment5Library.Data;
 using Assignment5Library.Entities;
 using Assignment_7_Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 
 namespace Assignment_6_Wapi.Controllers
@@ -24,6 +27,7 @@ namespace Assignment_6_Wapi.Controllers
         }
 
         // GET: api/Customers
+        [EnableCors("CorsAllowAll")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CustomerViewModel>>> GetCustomers()
         {

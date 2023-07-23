@@ -11,9 +11,12 @@
         <label class="control-label">Customer:</label>
         <select class="form-control" @bind="CustomerId">
             <option value="">Select a Customer...</option>
-            @foreach (var customer in Customers)
+            @if (Customers != null)
             {
-                <option value="@customer.CustomerId">@customer.FullName</option>
+                @foreach (var customer in Customers)
+                {
+                    <option value="@customer.CustomerId">@customer.FullName</option>
+                }
             }
         </select>
     </div>
