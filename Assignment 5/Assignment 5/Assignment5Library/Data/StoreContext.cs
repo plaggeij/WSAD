@@ -25,5 +25,12 @@ public class StoreContext: DbContext
             new Product { ProductId = 5, ProductName = "Soft Drink", ProductPrice = 2.0f },
             new Product { ProductId = 6, ProductName = "Side Salad", ProductPrice = 3.0f }
         );
+        modelBuilder.Entity<Customer>().HasData(
+            new Customer
+            {
+                CustomerId = 1, FirstName = "Jake", LastName = "Plagge", Address = "1234 Address st", City = "Lebanon",
+                State = "OH", PostalCode = "45036"
+            }
+        );
     }
 }
