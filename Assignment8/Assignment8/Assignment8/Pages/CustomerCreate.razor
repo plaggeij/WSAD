@@ -1,0 +1,54 @@
+﻿@page "/CustomerCreate"
+@using Assignment_7_Models
+@using Microsoft.AspNetCore.Components.Forms
+@inject HttpClient http
+<meta charset="utf-8">
+<h3>Create Customer</h3>
+<hr />
+<div class="container">
+    <div class="row">
+        <EditForm Model="@customer" OnSubmit="HandleSubmit">
+            <div class="form-floating my-2">
+                <label for="FirstName">First Name:</label>
+                <InputText id="FirstName" name="FirstName" placeholder="x" @bind-Value="customer.FirstName" class="form-control"/>
+            </div>
+            <div class="form-floating my-2">
+                <label for="LastName">Last Name:</label>
+                <InputText id="LastName" name="LastName" placeholder="x" @bind-Value="customer.LastName" class="form-control"/>
+            </div>
+            <div class="form-floating my-2">
+                <label for="Address">Address:</label>
+                <InputText id="Address" name="Address" placeholder="x" @bind-Value="customer.Address" class="form-control"/>
+            </div>
+            <div class="form-floating my-2">
+                <label for="City">City:</label>
+                <InputText id="City" name="City" placeholder="x" @bind-Value="customer.City" class="form-control"/>
+            </div>
+            <div class="form-floating my-2">
+                <label for="State">State:</label>
+                <InputText id="State" name="State" placeholder="x" @bind-Value="customer.State" class="form-control"/>
+            </div>
+            <div class="form-floating my-2">
+                <label for="PostalCode">Zip Code:</label>
+                <InputText id="PostalCode" name="PostalCode" placeholder="x" @bind-Value="customer.PostalCode" class="form-control"/>
+            </div>
+            <div class="form-group my-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </EditForm>
+    </div>
+    <div class="my-1">
+        <a href="Customers">Back to Customer List</a>
+    </div>
+</div>
+
+
+@code {
+    private CustomerViewModel customer { get; set; } = new();
+
+    private void HandleSubmit()
+    {
+        var result = http.PostAsJsonAsync<CustomerViewModel>($"api/Customers", customer);
+    }
+    
+}
