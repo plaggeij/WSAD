@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment5Library", "..\As
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment 7 Models", "..\Assignment 6\Assignment 6\Assignment 7 Models\Assignment 7 Models.csproj", "{B22E1291-C513-4EB2-ADD7-DB8609B09EE3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment8Wapi", "Assignment8Wapi\Assignment8Wapi.csproj", "{05A5C7C5-1C2D-46C4-B252-EE0F7B9FE0E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{B22E1291-C513-4EB2-ADD7-DB8609B09EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B22E1291-C513-4EB2-ADD7-DB8609B09EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B22E1291-C513-4EB2-ADD7-DB8609B09EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05A5C7C5-1C2D-46C4-B252-EE0F7B9FE0E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05A5C7C5-1C2D-46C4-B252-EE0F7B9FE0E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05A5C7C5-1C2D-46C4-B252-EE0F7B9FE0E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05A5C7C5-1C2D-46C4-B252-EE0F7B9FE0E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,12 +1,37 @@
 @page "/PointOfSales/{CustomerId:int?}"
+@inject HttpClient http
 
 <h3>PointOfSales</h3>
 
-@CustomerId
+@if (Customer is null || Products is null)
+{
+    <p>Retrieving Data. . .</p>
+}
+@else
+{
+    <CustomerCard Customer="@Customer" BackgroundColor="MidnightBlue" TextColor="White"/>
+@foreach (var product in Products)
+{
+    <div class="container-fluid">
+        <ProductCard Product="product" Width="170px" BackgroundColor="Beige"/>
+    </div>
+}
+}
 
 @code {
 
     [Parameter]
     public int? CustomerId { get; set; }
+    
+    public CustomerViewModel? Customer { get; set; }
+    
+    public List<ProductViewModel>? Products { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Customer = await http.GetFromJsonAsync<CustomerViewModel>($"api/Customers/{CustomerId}");
+        Products = await http.GetFromJsonAsync<List<ProductViewModel>>("api/Products");
+        await base.OnInitializedAsync();
+    }
 
 }
