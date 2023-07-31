@@ -1,4 +1,4 @@
-﻿@page "/ProductDetails"
+﻿@page "/ProductDetails/{ProductId}"
 @inject HttpClient http
 
 <h3>Product Details</h3>
@@ -16,13 +16,13 @@ else
             <hr/>
             <dl class="row">
                 <dt class="col-sm-2">
-                    Product Name
+                    Product Name: 
                 </dt>
                 <dd class="col-sm-10">
                     @product!.ProductName
                 </dd>
                 <dt class="col-sm-2">
-                    Product Price
+                    Product Price: 
                 </dt>
                 <dd class="col-sm-10">
                     @product!.ProductPrice
